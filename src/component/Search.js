@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 
-const Search = (poke) => {
-  const [search, setSearch] = useState("");
-  console.log(poke);
-
-  const filterpoke = (e) => {
-    setSearch(e.target.value);
-  };
-
+const Search = ({ search, setSearch }) => {
   return (
     <div>
       <form className="form-inline text-center my-2">
@@ -16,7 +9,7 @@ const Search = (poke) => {
           type="search"
           placeholder="Search"
           value={search}
-          onChange={filterpoke}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </form>
     </div>

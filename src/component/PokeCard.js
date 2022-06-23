@@ -6,6 +6,9 @@ import Search from "./Search";
 
 const PokeCard = () => {
   const [poke, setPoke] = useState([]);
+  const [search, setSearch] = useState("");
+
+  // console.log(poke.filter((poke) => poke.name.toLowerCase().includes(search)));
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20`).then((response) => {
@@ -16,32 +19,34 @@ const PokeCard = () => {
 
   return (
     <>
-      <Search poke={poke} />
+      <Search setSearch={setSearch} search={search} />
 
       <div className="container mt-3">
         <div className="row d-flex justify-content-center align-items-center">
-          {poke.map((value, index) => {
-            const pokeIndex = ("000" + (index + 1)).slice(-3);
-            return (
-              <Card
-                style={{ width: "22rem", border: "none" }}
-                className="mx-2 mt-4 card_style"
-                key={value.name}
-              >
-                <Card.Img
-                  variant="top"
-                  style={{ height: "16rem" }}
-                  className="mt-3"
-                  src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokeIndex}.png`}
-                />
-                <Card.Body>
-                  <Card.Title className="align-items-center">
-                    {value.name.toUpperCase()}
-                  </Card.Title>
-                </Card.Body>
-              </Card>
-            );
-          })}
+          {poke
+            .filter((poke) => poke.name.toLowerCase().includes(search))
+            .map((value, index) => {
+              const pokeIndex = ("000" + (index + 1)).slice(-3);
+              return (
+                <Card
+                  style={{ width: "22rem", border: "none" }}
+                  className="mx-2 mt-4 card_style"
+                  key={value.name}
+                >
+                  <Card.Img
+                    variant="top"
+                    style={{ height: "16rem" }}
+                    className="mt-3"
+                    src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokeIndex}.png`}
+                  />
+                  <Card.Body>
+                    <Card.Title className="align-items-center">
+                      {value.name.toUpperCase()}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              );
+            })}
         </div>
       </div>
     </>
