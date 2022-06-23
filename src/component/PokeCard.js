@@ -16,20 +16,30 @@ const PokeCard = () => {
 
   return (
     <>
-      {poke.map((value, index) => {
-        const pokeIndex = ("000" + (index + 1)).slice(-3);
-        return (
-          <Card style={{ width: "18rem" }} key={value.name}>
-            <Card.Img
-              variant="top"
-              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokeIndex}.png`}
-            />
-            <Card.Body>
-              <Card.Title>{value.name}</Card.Title>
-            </Card.Body>
-          </Card>
-        );
-      })}
+      <div className="container mt-3">
+        <div className="row d-flex justify-content-center align-items-center">
+          {poke.map((value, index) => {
+            const pokeIndex = ("000" + (index + 1)).slice(-3);
+            return (
+              <Card
+                style={{ width: "22rem", border: "none" }}
+                className="mx-2 mt-4 card_style"
+                key={value.name}
+              >
+                <Card.Img
+                  variant="top"
+                  style={{ height: "16rem" }}
+                  className="mt-3"
+                  src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokeIndex}.png`}
+                />
+                <Card.Body>
+                  <Card.Title>{value.name}</Card.Title>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 };
