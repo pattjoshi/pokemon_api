@@ -1,21 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Search from "./Search";
 
 const PokeCard = () => {
   const [poke, setPoke] = useState([]);
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20`).then((response) => {
-      console.log(response);
+      //console.log(response);
       setPoke(response.data.results);
     });
   }, []);
 
   return (
     <>
+      <Search poke={poke} />
+
       <div className="container mt-3">
         <div className="row d-flex justify-content-center align-items-center">
           {poke.map((value, index) => {
@@ -33,7 +35,9 @@ const PokeCard = () => {
                   src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokeIndex}.png`}
                 />
                 <Card.Body>
-                  <Card.Title>{value.name}</Card.Title>
+                  <Card.Title className="align-items-center">
+                    {value.name.toUpperCase()}
+                  </Card.Title>
                 </Card.Body>
               </Card>
             );
