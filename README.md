@@ -12,10 +12,3 @@
 - [FILE SHARING](https://www.youtube.com/watch?v=CwnViYV4gM0&t=327s)
 - [REST API & JWT](https://www.youtube.com/watch?v=iM8h8-LcJPk&t=15256s)
 
-
-
-## doing 1
-
-
-
-
